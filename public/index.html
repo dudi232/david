@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <title>Documentation</title>
+    <style>
+      body {
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        margin-top: 50px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+      }
+
+      .table a {
+        color: #007bff;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      .table a:hover {
+        color: #0056b3;
+      }
+
+      .table-responsive {
+        border: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 class="text-center mb-4">
+        Documentation of Node.js Server for Toys collection
+      </h1>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Route</th>
+              <th>Method</th>
+              <th>Info</th>
+              <th>Params/Body</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="/toys">/toys</a>
+              </td>
+              <td><strong>Get</strong></td>
+              <td>
+                Retrieves a list of toys according to the specified query
+                parameters.
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    <strong>page</strong> (optional): page number to return
+                    (default: 1).
+                    <a href="/toys?page=1">/toys?page=1</a>
+                  </li>
+                  <li>
+                    <strong>limit</strong> (optional): number of toys per page
+                    (default: 10).
+                    <a href="/toys?limit=3">/toys?limit=3</a>
+                  </li>
+                  <li>
+                    <strong>sort</strong> (optional): field to sort by (default:
+                    price).
+                    <a href="/toys?limit=7&sort=price"
+                      >/toys?limit=7&sort=price</a
+                    >
+                  </li>
+                  <li>
+                    <strong>reverse</strong> (optional): if set to yes, sorts in
+                    descending order.
+                    <a href="/toys?reverse=yes">/toys?reverse=yes</a>
+                  </li>
+                  <li>
+                    <strong>name</strong> or <strong>info</strong> (optional):
+                    search by name or Info.
+                    <a href="/toys?s=Huggable">/toys?s=Huggable</a>
+                  </li>
+                  <li>
+                    <strong>category</strong> (optional): search by category.
+                    <a href="/toys?category=s">/toys?category=abc</a>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Post</strong></td>
+              <td>Adds a new toy. <strong>Token is required!</strong></td>
+              <td>
+                <ul>
+                  <li>
+                    Request Body: Toy data to be added in the following format.
+                  </li>
+                  <li>price: 1-99999</li>
+                  <li>img_url is allowed and not required</li>
+                  <li>
+                    Should look like this:
+                    <pre>
+{
+  "name": "Huggable Puppy",
+  "info": "adorable puppy for play",
+  "category": "Stuffed Animals",
+  "img_url": "any url",
+  "price": 16
+}
+                                    </pre
+                    >
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>/toys/:id</td>
+              <td><strong>Put</strong></td>
+              <td>
+                Updates an existing toy with the user ID of the toy.
+                <strong>Token is required!</strong>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    Request Body: Toy data to be updated in the following
+                    format.
+                  </li>
+                  <li>price: 1-99999</li>
+                  <li>img_url is allowed and not required</li>
+                  <li>
+                    Should look like this:
+                    <pre>
+            {
+              "name": "Updated Toy Name",
+              "info": "New toy description",
+              "category": "Stuffed Animals",
+              "img_url": "new url",
+              "price": 20
+            }
+                    </pre>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><strong>Delete</strong></td>
+              <td>
+                Deletes an existing toy with the user ID of the toy.
+                <strong>Token is required!</strong>
+              </td>
+              <td>
+                <ul>
+                  <li>
+                    Request Parameters: Provide the ID of the toy you want to
+                    delete in the URL.
+                  </li>
+                  <li>Example: /toys/123</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 class="text-center mb-4">
+        Documentation of Node.js Server for Users collection
+      </h1>
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr>
+              <th>Route</th>
+              <th>Method</th>
+              <th>Info</th>
+              <th>Params/Body</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="/users">/users</a>
+              </td>
+              <td><strong>Post</strong></td>
+              <td><strong>Sign Up. add new user </strong></td>
+              <td>
+                Request Body: User data to be added <br />
+                Should look like this:
+                <pre>
+                 {
+                   "name":"dudi",
+                   "email":"123@gmail.com",
+                   "password":"123" 
+                 }
+                </pre>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="/users/login">/users/login</a></td>
+              <td><strong>Post</strong></td>
+              <td>
+                login with user details and get a unique
+                <strong>Token</strong>
+              </td>
+              <td>
+                Request Body: User data <br />
+                Should look like this:
+                <pre>
+                 {
+                   "email":"123@gmail.com",
+                   "password":"123" 
+                 }
+                </pre>
+              </td>
+            </tr>
+            <tr>
+              <td>/users/myInfo</td>
+              <td><strong>Get</strong></td>
+              <td>
+                get the user info by header request, with the
+                <strong>"token"</strong> of the user
+              </td>
+              <td>Request Header:"x-api-key"-"token123"</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
